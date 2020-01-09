@@ -4,6 +4,7 @@ package com.shone.shardingjdbcdatabasestrategy.controller;
 import com.shone.shardingjdbcdatabasestrategy.entity.TOrder;
 import com.shone.shardingjdbcdatabasestrategy.service.ITOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,9 +41,16 @@ public class TOrderController {
      * @return
      */
     @RequestMapping("/add")
-    public Object add(TOrder tOrder){
+    public Object add(@RequestBody TOrder tOrder){
         tOrder.setAddTime(LocalDateTime.now());
         return itOrderService.save(tOrder);
     }
 
+    @RequestMapping("/create")
+    public String create(@RequestBody TOrder tOrder){
+        tOrder.setAddTime(LocalDateTime.now());
+        itOrderService.createOrder(tOrder);
+        return "";
+    }
+    
 }

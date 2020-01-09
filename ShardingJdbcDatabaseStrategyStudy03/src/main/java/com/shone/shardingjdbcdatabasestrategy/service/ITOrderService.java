@@ -13,4 +13,5 @@ import com.shone.shardingjdbcdatabasestrategy.entity.TOrder;
  */
 public interface ITOrderService extends IService<TOrder> {
 
+	public void createOrder(TOrder order);
 }

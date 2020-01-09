@@ -1,13 +1,17 @@
 package com.shone.shardingjdbcdatabasestrategy.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -20,6 +24,8 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class TOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,18 +33,19 @@ public class TOrder implements Serializable {
     /**
      * ID
      */
-    @TableId(value = "order_id", type = IdType.AUTO)
+    @TableId(value = "order_id")
     private Long orderId;
 
-    /**
+	/**
      * user表ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 创建时间
      */
     private LocalDateTime addTime;
 
-
+    @TableField(exist=false)
+    private List<TOrderItems> orderItems;
 }
